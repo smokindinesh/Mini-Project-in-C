@@ -6,7 +6,7 @@ List of articles:
 
  1. [Libray management](http://www.codeincodeblock.com/2011/03/mini-project-library-management-in-c.html)
  2. [Snake Game](http://www.codeincodeblock.com/2011/06/mini-projet-snake-game-in-c.html)
- 3. [Quize Game](http://www.codeincodeblock.com/2011/06/mini-project-quiz-in-c.html)
+ 3. [Quiz Game](http://www.codeincodeblock.com/2011/06/mini-project-quiz-in-c.html)
  4. [Department store system](http://www.codeincodeblock.com/2011/06/mini-project-department-store-source.html)
  5. [Tic-tac-toe game](http://www.codeincodeblock.com/2011/06/mini-project-tic-tac-game-source-code.html)
  6. [Personal Dairy Management System](http://www.codeincodeblock.com/2012/06/school-project-personal-dairy.html)
