@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1584013876 source:d:\work\blog\mini project c\mini-project-in-c\quiz\main.c
+	<stdio.h>
+	<conio.h>
+	<windows.h>
+	<ctype.h>
+	<stdlib.h>
+	<time.h>
+	<dos.h>
+
