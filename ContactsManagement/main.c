@@ -55,7 +55,7 @@ printf("address:");
 scanf("%[^\n]",&list.add);
 fflush(stdin);
 printf("email address:");
-gets(list.email);
+fgets(list.email,30,stdin);
 printf("\n");
 fwrite(&list,sizeof(list),1,fp);
 }
@@ -163,7 +163,7 @@ printf("..::address:");
 scanf("%[^\n]",&list.add);
 fflush(stdin);
 printf("..::email address:");
-gets(list.email);
+fgets(list.email,30,stdin);
 printf("\n");
 fwrite(&list,sizeof(list),1,ft);
 fclose(fp);
