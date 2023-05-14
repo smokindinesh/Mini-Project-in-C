@@ -1,4 +1,5 @@
 # About
+C is a good programming language
 
 Mini Projects written in C for beginner. Detail of all projects are in http://codeincodeblock.com/.
 
