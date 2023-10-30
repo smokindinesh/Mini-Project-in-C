@@ -1,6 +1,6 @@
 # About
 
-Mini Projects written in C for begineer. Detail of all projects are in http://codeincodeblock.com/
+Mini Projects written in C for beginner. Detail of all projects are in http://codeincodeblock.com/.
 
 List of articles:
 
