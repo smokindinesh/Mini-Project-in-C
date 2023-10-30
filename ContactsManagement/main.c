@@ -1,216 +1,279 @@
+// Define C standard headers
+#include<windows.h>
 #include<stdio.h>
 #include<conio.h>
+#include<ctype.h>
 #include<string.h>
-#include<process.h>
-#include<stdlib.h>
-#include<dos.h>
 
+// Define Constant Variables
+#define ESC 27
+#define MAX_NAME_SZ 10
+#define MAX_NUM_SZ 20
+#define READ_ARRAY_SZ 15
+#define DATA_FILE "dataFile.dat"
+#define TEMP_FILE "tempFile.dat"
 
+//Define data structure
 
+struct data{
+    char fName[MAX_NAME_SZ];
+    char lName[MAX_NAME_SZ];
+    char mPhone[MAX_NUM_SZ];
+    char wPhone[MAX_NUM_SZ];
+    char hPhone[MAX_NUM_SZ];
+};
 
-struct contact
-{
-long ph;
-char name[20],add[20],email[30];
-}list;
+//Declare custom headers
 
-char query[20],name[20];
-FILE *fp, *ft;
-int i,n,ch,l,found;
+#include "gotoxy.h"
+#include "file_operation.h"
 
-int main()
-{
+// Declare functions
+struct data readData();
+void mainMenu();
+void viewItems();
+void addItems();
+void updateItems();
+void deleteItems();
 
-
-
-
-main:
-system("cls");    /* ************Main menu ***********************  */
-printf("\n\t **** Welcome to a0 contact Manager ****");
-printf("\n\n\n\t\t\tMAIN MENU\n\t\t=====================\n\t\t[1] Add a new Contact\n\t\t[2] List all Contacts\n\t\t[3] Search for contact\n\t\t[4] Edita Contact\n\t\t[5] Delete a Contact\n\t\t[0] Exit\n\t\t=================\n\t\t");
-printf("Enter the choice:");
-scanf("%d",&ch);
-
-switch(ch)
-{
-case 0:
-printf("\n\n\t\tAre you sure u want to exit?");
-break;
-/* *********************add new contacts************  */
-case 1:
-
-system("cls");
-fp=fopen("contact.dll","a");
-for (;;)
-{ fflush(stdin);
-printf("To exit enter blank space in the name input\nName (Use identical):");
-scanf("%[^\n]",&list.name);
-if(stricmp(list.name,"")==0 || stricmp(list.name," ")==0)
-break;
-fflush(stdin);
-printf("Phone:");
-scanf("%ld",&list.ph);
-fflush(stdin);
-printf("address:");
-scanf("%[^\n]",&list.add);
-fflush(stdin);
-printf("email address:");
-gets(list.email);
-printf("\n");
-fwrite(&list,sizeof(list),1,fp);
-}
-fclose(fp);
-break;
-
-/* *********************list of contacts*************************  */
-case 2:
-system("cls");
-printf("\n\t\t================================\n\t\t\tLIST OF CONTACTS\n\t\t================================\n\nName\t\tPhone No\t    Address\t\tE-mail ad.\n=================================================================\n\n");
-
-for(i=97;i<=122;i=i+1)
-{
-
-fp=fopen("contact.dll","r");
-fflush(stdin);
-found=0;
-while(fread(&list,sizeof(list),1,fp)==1)
-{
-if(list.name[0]==i || list.name[0]==i-32)
-{
-printf("\nName\t: %s\nPhone\t: %ld\nAddress\t: %s\nEmail\t: %s\n",list.name,
-list.ph,list.add,list.email);
-found++;
-}
-}
-if(found!=0)
-{
-    printf("=========================================================== [%c]-(%d)\n\n",i-32,found);
-    getch();
-
-}
-fclose(fp);
-
+// C main function
+int main(){
+    mainMenu();
+    return 0;
 }
 
-break;
+//Start function definitions
+
+//Display user menu
+void mainMenu(){
 
 
+    char choice;
 
-/* *******************search contacts**********************  */
-case 3:
-system("cls");
-do
-{
-found=0;
-printf("\n\n\t..::CONTACT SEARCH\n\t===========================\n\t..::Name of contact to search: ");
-fflush(stdin);
-scanf("%[^\n]",&query);
-l=strlen(query);
-fp=fopen("contact.dll","r");
+    system("cls");
 
-system("cls");
-printf("\n\n..::Search result for '%s' \n===================================================\n",query);
-while(fread(&list,sizeof(list),1,fp)==1)
-{
-for(i=0;i<=l;i++)
-name[i]=list.name[i];
-name[l]='\0';
-if(stricmp(name,query)==0)
-{
-printf("\n..::Name\t: %s\n..::Phone\t: %ld\n..::Address\t: %s\n..::Email\t:%s\n",list.name,list.ph,list.add,list.email);
-found++;
-if (found%4==0)
-{
-printf("..::Press any key to continue...");
-getch();
-}
-}
-}
+    gotoxy(35,6);
+    printf("----Welcome to Contact Management System----");
+    gotoxy(35,8);
+    printf("Please select the any option v, a, u, d, e or ESC");
+    gotoxy(35,10);
+    printf("V) View All Contact");
+    gotoxy(35,12);
+    printf("A) Add Contact");
+    gotoxy(35,14);
+    printf("U) Update Contact");
+    gotoxy(35,16);
+    printf("D) Delete Contact");
+    gotoxy(35,18);
+    printf("E) Exit application");
+    gotoxy(35,20);
+    printf("Please enter ESC to exit application");
 
-if(found==0)
-printf("\n..::No match found!");
-else
-printf("\n..::%d match(s) found!",found);
-fclose(fp);
-printf("\n ..::Try again?\n\n\t[1] Yes\t\t[0] No\n\t");
-scanf("%d",&ch);
-}while(ch==1);
-break;
+    choice=tolower(getch());
 
-
-/* *********************edit contacts************************/
-case 4:
-system("cls");
-fp=fopen("contact.dll","r");
-ft=fopen("temp.dat","w");
-fflush(stdin);
-printf("..::Edit contact\n===============================\n\n\t..::Enter the name of contact to edit:");
-scanf("%[^\n]",name);
-while(fread(&list,sizeof(list),1,fp)==1)
-{
-if(stricmp(name,list.name)!=0)
-fwrite(&list,sizeof(list),1,ft);
-}
-fflush(stdin);
-printf("\n\n..::Editing '%s'\n\n",name);
-printf("..::Name(Use identical):");
-scanf("%[^\n]",&list.name);
-fflush(stdin);
-printf("..::Phone:");
-scanf("%ld",&list.ph);
-fflush(stdin);
-printf("..::address:");
-scanf("%[^\n]",&list.add);
-fflush(stdin);
-printf("..::email address:");
-gets(list.email);
-printf("\n");
-fwrite(&list,sizeof(list),1,ft);
-fclose(fp);
-fclose(ft);
-remove("contact.dll");
-rename("temp.dat","contact.dll");
-break;
-
-
-/* ********************delete contacts**********************/
-case 5:
-system("cls");
-fflush(stdin);
-printf("\n\n\t..::DELETE A CONTACT\n\t==========================\n\t..::Enter the name of contact to delete:");
-scanf("%[^\n]",&name);
-fp=fopen("contact.dll","r");
-ft=fopen("temp.dat","w");
-while(fread(&list,sizeof(list),1,fp)!=0)
-if (stricmp(name,list.name)!=0)
-fwrite(&list,sizeof(list),1,ft);
-fclose(fp);
-fclose(ft);
-remove("contact.dll");
-rename("temp.dat","contact.dll");
-break;
-
-default:
-printf("Invalid choice");
-break;
+    switch(choice){
+        case 'v':
+            viewItems();
+            break;
+        case 'a':
+            addItems();
+            break;
+        case 'u':
+            updateItems();
+            break;
+        case 'd':
+            deleteItems();
+            break;
+        case 'e':
+            exit(0);
+        case ESC:
+            exit(0);
+        default:
+            gotoxy(35,30);
+            printf("Please enter options V, A, U, D, E or ESC");
+            if(getch())
+                mainMenu();
+    }
 }
 
+//Display contacts only 15 items
+void viewItems(){
 
-printf("\n\n\n..::Enter the Choice:\n\n\t[1] Main Menu\t\t[0] Exit\n");
-scanf("%d",&ch);
-switch (ch)
-{
-case 1:
-goto main;
+    struct data c[READ_ARRAY_SZ];
+    int data_sz=0;
+    data_sz = view(c,READ_ARRAY_SZ);
+
+    system("cls");
+    gotoxy(35,6);
+    printf("----Welcome to Contact Management System----");
+    gotoxy(35,8);
+    printf("View Contact function selected %d",data_sz);
 
 
-case 0:
-break;
+    gotoxy(15,10);
+    printf("First Name");
+    gotoxy(35,10);
+    printf("Last Name");
+    gotoxy(55,10);
+    printf("Mobile Number");
+    gotoxy(70,10);
+    printf("Work Number");
+    gotoxy(85,10);
+    printf("Home Number");
+    for (int i=0;i<data_sz;i++){
+        gotoxy(15,11 + i);
+        printf("%s",c[i].fName);
+        gotoxy(35,11 + i);
+        printf("%s",c[i].lName);
+        gotoxy(55,11 + i);
+        printf("%s",c[i].mPhone);
+        gotoxy(70,11 + i);
+        printf("%s",c[i].wPhone);
+        gotoxy(85,11 + i);
+        printf("%s",c[i].hPhone);
+    }
 
-default:
-printf("Invalid choice");
-break;
+    gotoxy(35,27);
+    printf("Please enter ESC key to go back.");
+    if(getch()==ESC){
+        mainMenu();
+    } else {
+        viewItems();
+    }
+
 }
 
-return 0;
+//Add contacts
+void addItems(){
+
+    struct data c;
+
+    system("cls");
+    gotoxy(35,6);
+    printf("----Welcome to Contact Management System----");
+    gotoxy(35,8);
+    printf("Please enter details:");
+
+    c = readData();
+    if(searchByNum(c.mPhone)==2){
+        gotoxy(35,16);
+        printf("Mobile number is empty. Record can't be saved.");
+    } else if(searchByNum(c.mPhone)==1){
+        gotoxy(35,16);
+        printf("Mobile number %s exist. Please go back to update.",c.mPhone);
+    } else {
+        add(c);
+        gotoxy(35,17);
+        printf("Record Successfully Saved.");
+    }
+    gotoxy(35,27);
+    printf("Please press any key to continue or enter ESC key to go back.");
+    if(getch()==ESC){
+        mainMenu();
+    } else {
+        addItems();
+    }
 }
+
+//Update contact details
+void updateItems(){
+
+    char pNum[MAX_NUM_SZ];
+    struct data c;
+    system("cls");
+    gotoxy(35,6);
+    printf("----Welcome to Contact Management System----");
+    gotoxy(35,7);
+    printf("Please enter the Mobile Phone that you want to update details");
+    gotoxy(35,9);
+    printf("Enter Mobile Phone:");
+    getString(pNum,sizeof(pNum));
+
+    if(searchByNum(pNum)==1){
+        gotoxy(35,10);
+        printf("Mobile number %s exist. Please enter new details.",pNum);
+        c=readData();
+        update(c,pNum);
+    } else {
+        gotoxy(35,11);
+        printf("Mobile number %s do not exist.",pNum);
+    }
+    gotoxy(35,27);
+    printf("Please enter any key to continue or enter ESC key to go back.");
+    if(getch()==ESC){
+        mainMenu();
+    } else {
+        updateItems();
+    }
+}
+
+//Delete contacts details
+void deleteItems(){
+
+    char pNum[MAX_NUM_SZ];
+    char choice;
+    system("cls");
+    gotoxy(35,6);
+    printf("----Welcome to Contact Management System----");
+    gotoxy(35,7);
+    printf("Please enter the Mobile Phone that you want to delete");
+    gotoxy(35,9);
+    printf("Enter Mobile Phone:");
+    getString(pNum,sizeof(pNum));
+
+    if(searchByNum(pNum)==1){
+        gotoxy(35,12);
+        printf("Mobile number %s exist. Do you want to delete it?.",pNum);
+        gotoxy(35,14);
+        printf("Please press y to delete or any key to skip.");
+        choice=tolower(getch());
+        if(choice=='y'){
+            del(pNum);
+            gotoxy(35,16);
+            printf("Phone number successfully deleted.");
+        }
+
+    } else {
+        gotoxy(35,12);
+        printf("Mobile number %s do not exist.",pNum);
+    }
+
+    gotoxy(35,27);
+    printf("Please enter any key to continue or enter ESC key to go back.");
+
+    if(getch()==ESC){
+        mainMenu();
+    } else {
+        deleteItems();
+    }
+}
+
+//Function to read contact data
+struct data readData(){
+    struct data c;
+
+    gotoxy(35,11);
+    printf("Enter first name: ");
+    getString(c.fName,sizeof(c.fName));
+
+    gotoxy(35,12);
+    printf("Enter last name: ");
+    getString(c.lName,sizeof(c.lName));
+
+    gotoxy(35,13);
+    printf("Enter mobile phone: ");
+    getString(c.mPhone,sizeof(c.mPhone));
+
+    gotoxy(35,14);
+    printf("Enter work phone: ");
+    getString(c.wPhone,sizeof(c.wPhone));
+
+    gotoxy(35,15);
+    printf("Enter home phone: ");
+    getString(c.hPhone,sizeof(c.hPhone));
+
+    return c;
+};
+
+
+

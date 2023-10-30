@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1697186264 source:d:\04 work\blog\mini project c\mini-project-in-c\contactsmanagement\main.c
+	<windows.h>
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<string.h>
+	"gotoxy.h"
+	"file_operation.h"
+
+1692788464 d:\04 work\blog\mini project c\mini-project-in-c\contactsmanagement\gotoxy.h
+	<windows.h>
+
+1697186223 d:\04 work\blog\mini project c\mini-project-in-c\contactsmanagement\file_operation.h
+

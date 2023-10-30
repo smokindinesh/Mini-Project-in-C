@@ -31,13 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="file_operation.h" />
+		<Unit filename="gotoxy.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
