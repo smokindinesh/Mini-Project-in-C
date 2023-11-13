@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1699866411 source:d:\04 work\blog\mini project c\mini-project-in-c\personaldairy\main.c
+	<windows.h>
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<string.h>
+	<time.h>
+	"gotoxy.h"
+	"file_operation.h"
+
+1698654349 d:\04 work\blog\mini project c\mini-project-in-c\personaldairy\gotoxy.h
+	<windows.h>
+
+1699864764 d:\04 work\blog\mini project c\mini-project-in-c\personaldairy\file_operation.h
+
