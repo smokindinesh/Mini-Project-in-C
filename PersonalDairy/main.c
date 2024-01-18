@@ -145,6 +145,8 @@ void viewItems(){
 
 }
 
+printf("This is a sample statment");
+
 //Add contacts
 void addItems(){
 
