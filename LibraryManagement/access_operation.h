@@ -2,8 +2,6 @@
 #define DATA_FILE "adminAccess.dat"
 #define TEMP_FILE "tempFile.dat"
 
-//File pointers
-//FILE *fp, *ft, *fa;
 
 //Read data from file
 
