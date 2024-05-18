@@ -20,12 +20,12 @@
 //Define data structure
 
 struct data{
-    char refNum[REF_SZ];
-    char noteDate[DATE_SZ];
-    char eventDate[DATE_SZ];
-    char location[MIN_TEXT_SZ];
-    char eventDesc[MIN_TEXT_SZ];
-    char notes[MAX_TEST_SZ];
+    char refNum[REF_SZ]; //Unique reference number and auto-incremented
+    char noteDate[DATE_SZ]; //Note added date and auto populated using system date and time
+    char eventDate[DATE_SZ]; //Event date
+    char location[MIN_TEXT_SZ]; //Location of event happened
+    char eventDesc[MIN_TEXT_SZ]; //Event short description
+    char notes[MAX_TEST_SZ]; //Notes of the Event
 };
 
 //Declare custom headers
@@ -41,8 +41,8 @@ void addItems();
 void updateItems();
 void deleteItems();
 
-int nextRefNum=0;
-char defChar[2] = {'N','A'};
+int nextRefNum = 0;
+char defChar[2]= {'N', 'A'};
 
 // C main function
 int main(){
@@ -257,7 +257,7 @@ struct data readData(int flag,char ref[] ){
 
     if(flag==0){
         nextRefNum++;
-        calRefNum(c.refNum,nextRefNum);
+        calRefNum(c.refNum,nextRefNum); //#R10001
 
     } else {
         strcpy(c.refNum,ref);

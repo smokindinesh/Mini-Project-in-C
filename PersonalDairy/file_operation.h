@@ -84,7 +84,6 @@ int searchByNum(char *num){
 }
 
 //Get next reference number
-
 int getNextRef(){
 
     struct data a;
@@ -98,7 +97,7 @@ int getNextRef(){
         fseek(fp,ftell(fp)-sizeof(a),0);
         fread(&a,sizeof(a),1,fp);
 
-        // converting string to number
+        // converting string to number #R10001
         for (int i = 0; a.refNum[i + 2] != '\0'; i++) {
             num = num * 10 + (a.refNum[i + 2] - 48);
         }
@@ -130,6 +129,7 @@ static void calRefNum(char *buff, int num){
     strcat(refNum, tmpRef);
     strcpy(buff,refNum);
 }
+
 
 
 
