@@ -1,0 +1,94 @@
+# depslib dependency file v1.0
+1713860965 source:d:\04 work\blog\videotutorial\library management in c\librarymanagement\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"utility.h"
+	"loadCsvData.h"
+	"access_operation.h"
+	"issueReturn_operation.h"
+	"userMenu.h"
+
+1710625343 d:\04 work\blog\videotutorial\library management in c\librarymanagement\user_access.h
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"utility.h"
+	"access_operation.h"
+	"loadStuData.h"
+	"admin_user.h"
+	"student.h"
+
+1709424996 d:\04 work\blog\videotutorial\library management in c\librarymanagement\gotoxy.h
+	<windows.h>
+
+1714386048 d:\04 work\blog\videotutorial\library management in c\librarymanagement\utility.h
+
+1710326908 d:\04 work\blog\videotutorial\library management in c\librarymanagement\admin_user.h
+
+1712488556 d:\04 work\blog\videotutorial\library management in c\librarymanagement\student.h
+
+1713777910 d:\04 work\blog\videotutorial\library management in c\librarymanagement\access_operation.h
+
+1710925373 d:\04 work\blog\videotutorial\library management in c\librarymanagement\loadstudata.h
+
+1714912752 d:\04 work\blog\videotutorial\library management in c\librarymanagement\loadcsvdata.h
+
+1714911836 d:\04 work\blog\videotutorial\library management in c\librarymanagement\usermenu.h
+
+1714882941 d:\04 work\blog\videotutorial\library management in c\librarymanagement\issuereturn_operation.h
+
+1713860965 source:d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"utility.h"
+	"loadCsvData.h"
+	"access_operation.h"
+	"issueReturn_operation.h"
+	"userMenu.h"
+
+1709424996 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\gotoxy.h
+	<windows.h>
+
+1714386048 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\utility.h
+
+1714912752 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\loadcsvdata.h
+
+1713777910 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\access_operation.h
+
+1714882941 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\issuereturn_operation.h
+
+1714911836 d:\04 work\blog\videotutorial\librarymanagementinc\librarymanagement\usermenu.h
+
+1715170818 source:d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\main.c
+	<stdio.h>
+	<conio.h>
+	<stdlib.h>
+	<string.h>
+	"gotoxy.h"
+	"utility.h"
+	"loadCsvData.h"
+	"access_operation.h"
+	"issueReturn_operation.h"
+	"userMenu.h"
+
+1709424996 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\gotoxy.h
+	<windows.h>
+
+1714386048 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\utility.h
+
+1714912752 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\loadcsvdata.h
+
+1713777910 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\access_operation.h
+
+1715166493 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\issuereturn_operation.h
+
+1715168162 d:\04_work\blog\videotutorial\librarymanagementinc\librarymanagement\usermenu.h
+
