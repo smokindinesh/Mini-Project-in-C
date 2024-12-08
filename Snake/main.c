@@ -37,6 +37,8 @@ void gameInit();
 int gameStart();
 
 int score;
+int keyInput=77;
+int gameExitFlag=0;
 
 int main()
 {
@@ -93,8 +95,7 @@ void gameInit(){
 
 int gameStart(int r){
 
-    int input;
-    int exitFlag=0;
+    gameExitFlag=0;
 
     do{
         delay(150);
@@ -107,32 +108,32 @@ int gameStart(int r){
         gotoxy(55,4);
         score = s.length * 10 - startLen * 10;
         printf("Snake Length: %d Score: %d ",s.length,score);
-        exitFlag = checkCollision();
-        if(exitFlag==1){
-            break;
+        gameExitFlag = checkCollision();
+        if(gameExitFlag!=0){
+            return gameExitFlag;
         }
         drawHeadTail();
     } while(!kbhit());
 
+    keyInput = getch();
 
-    input = getch();
+    if(keyInput==TOP){
 
-    if(input==TOP){
         dirIndex = UP;
-    } else if(input==DOWN){
+    } else if(keyInput==DOWN){
         dirIndex = DW;
-    } else if(input==LEFT){
+    } else if(keyInput==LEFT){
         dirIndex = LT;
-    } else if(input==RIGHT){
+    } else if(keyInput==RIGHT){
         dirIndex = RT;
-    } else if(input==ESC){
+    } else if(keyInput==ESC){
         exit(0);
     }
 
-    if(exitFlag==0){
+    if(gameExitFlag==0){
         gameStart(r);
     }
 
-    return exitFlag;
+    return gameExitFlag;
 
 }

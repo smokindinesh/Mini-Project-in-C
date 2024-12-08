@@ -82,10 +82,10 @@ void initSnake(){
     s.head.x = s.body[startLen-1].x;
     s.head.y = s.body[startLen-1].y;
 
-    //printf("X: %d %d Y: %d %d I:%d",s.head.x,s.body[startLen-1].x,s.head.y,s.body[startLen-1].y,startLen);
-
-    s.tail.x = s.body[0].x;
-    s.tail.y = s.body[0].y;
+    //In first frame of the game tail position
+    //need to be out of window or blank
+    s.tail.x = 0;
+    s.tail.y = 0;
 
     s.dir.x = dir[RT].x; s.dir.y = dir[RT].y;
 
