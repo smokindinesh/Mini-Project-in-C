@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1736163850 source:d:\04_work\blog\mini_project_in_c\mini-project-in-c\tictactoe\main.c
+	<stdio.h>
+	<conio.h>
+	<time.h>
+	<unistd.h>
+	<stdlib.h>
+	<windows.h>
+	"gotoxy.h"
+	"ticTacToe.h"
+	"drawBoard.h"
+	"players.h"
+
+1736163614 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tictactoe\tictactoe.h
+
+1736162965 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tictactoe\drawboard.h
+
+1584614641 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tictactoe\gotoxy.h
+	<windows.h>
+
+1736163998 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tictactoe\players.h
+

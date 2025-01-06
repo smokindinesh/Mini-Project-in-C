@@ -4,7 +4,7 @@
 #define startPosY 1 //Game play window starting y-coordinate
 #define startLen 3 //Game play window starting y-coordinate
 
-#define sSize 800 //Max size of the snake must be always >= winXLen * winYLen
+#define sSize 800 //Max size of the snake must be always <= winXLen * winYLen
 
 #define UP 0 //Up direction array index
 #define DW 1 //Down direction array index
@@ -76,7 +76,7 @@ void initSnake(){
 
     for(int i=0;i<startLen;i++){
         s.body[i].x = startPosX + i;
-        s.body[i].y = 10;
+        s.body[i].y = 10; //Initial starting position of snake.
     }
 
     s.head.x = s.body[startLen-1].x;
@@ -109,7 +109,7 @@ int buildSnake(struct Point2D f,struct Point2D d){
     } else {
         s.tail.x = s.body[0].x;
         s.tail.y = s.body[0].y;
-        //Swap snake body back starting from initial index
+        //Swap snake body back to starting from initial index
         for (int i = 0;i<s.length;i++){
             s.body[i].x = s.body[i+1].x;
             s.body[i].y = s.body[i+1].y;
