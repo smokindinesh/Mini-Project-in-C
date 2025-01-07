@@ -5,8 +5,8 @@
 #include<stdlib.h>
 #include <windows.h>
 
-#define ESC 27
-int human,computer;
+#define ESC 27 //For ESC keyboard key
+int human,computer; //Variable to identify human or computer
 
 #include "gotoxy.h"
 #include "ticTacToe.h"
@@ -22,6 +22,7 @@ int getPlayerInput();
 int getHumanInput();
 int getComputerInput();
 
+//Function to hide mouse cursor
 void hidecursor()
 {
    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -30,7 +31,7 @@ void hidecursor()
    info.bVisible = FALSE;
    SetConsoleCursorInfo(consoleHandle, &info);
 }
-
+//function to delay
 void delay(unsigned int msec){
     //clock_t goal = msec + clock();
     //while (goal > clock());

@@ -1,3 +1,4 @@
+//Function to draw board
 void drawBoard(){
     system("cls");
     int x_coord;
@@ -27,7 +28,8 @@ void drawBoard(){
     printf("top left to right bottom corner");
 
 }
-
+//Function to display message at right side of
+//the window based on message type.
 void displayMessage(int player, int msgType){
 
     if(msgType==0){
@@ -70,12 +72,13 @@ void displayMessage(int player, int msgType){
         printf("                                 ");
     }
 }
-
+//Function to draw Cross it given coordinate
 void draw_X(int i){
     gotoxy(box[i].center.x + boardStart_X,box[i].center.y + boardStart_Y);
     printf("X");
 }
 
+//Function to draw O it given coordinate
 void draw_O(int i){
     gotoxy(box[i].center.x + boardStart_X,box[i].center.y + boardStart_Y);
     printf("O");

@@ -1,3 +1,5 @@
+
+//structure definition to store player information
 struct Player {
     int numOfTurn;
     int selectedBox;
@@ -6,8 +8,9 @@ struct Player {
 
 };
 
-struct Player p;
+struct Player p; //Global variable to represent player
 
+//Function to initialize players
 void initPlayer(int player_1, int player_2){
 
     p.numOfTurn = 0;
@@ -16,6 +19,8 @@ void initPlayer(int player_1, int player_2){
     p.nextPlayer = player_2;
 }
 
+//Set the value of current player and next player
+//in each turn of the game
 void setNextPlayer(int box, int prevPlayer){
 
     p.numOfTurn++;
@@ -25,6 +30,9 @@ void setNextPlayer(int box, int prevPlayer){
 
 }
 
+//This function will return game winning move or game draw move based on prameters
+//flag == 0, winning move
+//flag == 1, draw move
 int getWinDrawMove(int flag){
 
     int total=-1;
@@ -58,7 +66,7 @@ int getWinDrawMove(int flag){
                 return i+2;
         }
     }
-
+    //Check first diagonal of the board
     if((box[0].value + box[4].value + box[8].value) == total){
         if(box[0].value==0)
             return 0;
@@ -67,7 +75,7 @@ int getWinDrawMove(int flag){
         else
             return 8;
     }
-
+    //Check second diagonal of the board
     if((box[2].value + box[4].value + box[7].value) == total){
         if(box[2].value==0)
             return 2;
@@ -80,6 +88,7 @@ int getWinDrawMove(int flag){
     return -1;
 }
 
+//Get location of boxes 5,2,4,6,8 respectively
 int getMake2()
 {
     if(box[4].value == 0)
@@ -96,6 +105,7 @@ int getMake2()
     return -1;
 }
 
+//Get location of boxes 1,3,7,9 respectively
 int getMake4()
 {
     if(box[0].value == 0)
@@ -110,6 +120,7 @@ int getMake4()
     return -1;
 }
 
+//This function return best next move for computer player
 int getNextMove(){
 
     int boxNum;
