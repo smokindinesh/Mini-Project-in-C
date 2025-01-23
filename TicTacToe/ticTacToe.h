@@ -4,8 +4,7 @@
 #define boardStart_Y 2 //Board starting x-coordinate
 #define numBox 9 //Number of boxes
 #define numDiv 3 //Number of division on board
-#define firstPlayer 0 //Flag for first player
-#define secondPlayer 1 //Flag for second player
+
 
 int initBoxSize_X = boardSize_X/3; //7 ,each box length , toward x-axis
 int initBoxSize_Y = boardSize_Y/3; //4 ,each box height , toward y-axis
@@ -40,9 +39,9 @@ void initBoard(){
 void setBox(int i, int player){
     //Set the value of box based on player type
     if(player==human)
-        box[i].value= 3;
+        box[i].value = 3;
     else if(player==computer)
-        box[i].value= 5;
+        box[i].value = 5;
 }
 
 int isBoxEmpty(int i){

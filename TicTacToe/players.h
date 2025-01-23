@@ -76,7 +76,7 @@ int getWinDrawMove(int flag){
             return 8;
     }
     //Check second diagonal of the board
-    if((box[2].value + box[4].value + box[7].value) == total){
+    if((box[2].value + box[4].value + box[6].value) == total){
         if(box[2].value==0)
             return 2;
         else if (box[4].value==0)

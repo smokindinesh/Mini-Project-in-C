@@ -6,6 +6,8 @@
 #include <windows.h>
 
 #define ESC 27 //For ESC keyboard key
+#define firstPlayer 0 //Flag for first player
+#define secondPlayer 1 //Flag for second player
 int human,computer; //Variable to identify human or computer
 
 #include "gotoxy.h"
@@ -94,6 +96,8 @@ void startGame(){
         playerInput = getPlayerInput();
         drawTicTac(p.currentPlayer,playerInput);
         setBox(playerInput,p.currentPlayer);
+        gotoxy(36,16);
+        printf("H: %d C: %d CP: %d BoxValue: %d",human,computer,p.currentPlayer,box[playerInput].value);
 
         if(checkWinner()==1){
             gameStaus=1;
@@ -134,6 +138,8 @@ int getHumanInput(){
 
     choice = getch();
     boxNum = choice - 49;
+    gotoxy(36,14);
+    printf("H: BoxNum: %d BoxValue: %d P: %d",boxNum,box[boxNum].value,p.currentPlayer);
     while (boxNum<0 || boxNum >8 || isBoxEmpty(boxNum)!=0){
         displayMessage(p.currentPlayer,3);
         choice = getch();
@@ -151,6 +157,8 @@ int getComputerInput(){
     delay(1000);
 
     boxNum = getNextMove();
+    gotoxy(36,15);
+    printf("C: BoxNum: %d BoxValue: %d P: %d",boxNum,box[boxNum].value,p.currentPlayer);
     while (boxNum<0 || boxNum >8 || isBoxEmpty(boxNum)!=0){
         displayMessage(p.currentPlayer,3);
 
