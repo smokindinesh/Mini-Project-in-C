@@ -128,12 +128,12 @@ int getNextMove(){
 
     if(p.numOfTurn >= 3){
         //Get winning position
-        boxNum = getWinDrawMove(1);
+        boxNum = getWinDrawMove(0);
         if(boxNum!=-1)
             return boxNum;
 
         //Get Draw position
-        boxNum = getWinDrawMove(0);
+        boxNum = getWinDrawMove(1);
         if(boxNum!=-1)
             return boxNum;
     }

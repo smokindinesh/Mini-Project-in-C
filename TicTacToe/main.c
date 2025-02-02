@@ -16,7 +16,6 @@ int human,computer; //Variable to identify human or computer
 #include "players.h"
 
 
-
 void initGame(int choice);
 void gameMenu();
 void startGame();
@@ -76,6 +75,7 @@ void gameMenu()
     case 1:
     case 2:
         initGame(choice);
+        drawBoard();
         startGame();
         break;
     case 3:
@@ -90,14 +90,10 @@ void startGame(){
     int playerInput;
     int gameStaus=0;
 
-    drawBoard();
-
     do{
         playerInput = getPlayerInput();
         drawTicTac(p.currentPlayer,playerInput);
         setBox(playerInput,p.currentPlayer);
-        gotoxy(36,16);
-        printf("H: %d C: %d CP: %d BoxValue: %d",human,computer,p.currentPlayer,box[playerInput].value);
 
         if(checkWinner()==1){
             gameStaus=1;
@@ -138,8 +134,6 @@ int getHumanInput(){
 
     choice = getch();
     boxNum = choice - 49;
-    gotoxy(36,14);
-    printf("H: BoxNum: %d BoxValue: %d P: %d",boxNum,box[boxNum].value,p.currentPlayer);
     while (boxNum<0 || boxNum >8 || isBoxEmpty(boxNum)!=0){
         displayMessage(p.currentPlayer,3);
         choice = getch();
@@ -157,8 +151,6 @@ int getComputerInput(){
     delay(1000);
 
     boxNum = getNextMove();
-    gotoxy(36,15);
-    printf("C: BoxNum: %d BoxValue: %d P: %d",boxNum,box[boxNum].value,p.currentPlayer);
     while (boxNum<0 || boxNum >8 || isBoxEmpty(boxNum)!=0){
         displayMessage(p.currentPlayer,3);
 
