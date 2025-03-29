@@ -16,3 +16,20 @@
 
 1743213347 d:\04_work\blog\videotutorial\tetris\tetris.h
 
+1743250028 source:d:\04_work\blog\mini_project_in_c\mini-project-in-c\tetris\main.c
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<time.h>
+	<unistd.h>
+	"gotoxy.h"
+	"Tetris.h"
+	"shapes.h"
+
+1740864089 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tetris\gotoxy.h
+
+1743213347 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tetris\tetris.h
+
+1743249891 d:\04_work\blog\mini_project_in_c\mini-project-in-c\tetris\shapes.h
+

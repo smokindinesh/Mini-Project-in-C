@@ -7,7 +7,6 @@
 
 #include "gotoxy.h"
 #include "Tetris.h"
-#include "shapes.h"
 
 #define TOP 72
 #define DOWN 80
