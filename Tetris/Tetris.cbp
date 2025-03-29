@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="TicTacToe" />
+		<Option title="Tetris" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/TicTacToe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Tetris" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/TicTacToe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Tetris" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -31,13 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="drawBoard.h" />
+		<Unit filename="Tetris.h" />
 		<Unit filename="gotoxy.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="players.h" />
-		<Unit filename="ticTacToe.h" />
+		<Unit filename="shapes.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

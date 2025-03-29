@@ -151,11 +151,7 @@ int getComputerInput(){
     delay(1000);
 
     boxNum = getNextMove();
-    while (boxNum<0 || boxNum >8 || isBoxEmpty(boxNum)!=0){
-        displayMessage(p.currentPlayer,3);
 
-        boxNum = getNextMove();
-    }
     return boxNum;
 }
 

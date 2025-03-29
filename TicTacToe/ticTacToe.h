@@ -1,7 +1,7 @@
 #define boardSize_X 21 //Board length, toward x-axis
 #define boardSize_Y 12 //Board height, toward y-axis
 #define boardStart_X 10 //Board starting x-coordinate
-#define boardStart_Y 2 //Board starting x-coordinate
+#define boardStart_Y 2 //Board starting y-coordinate
 #define numBox 9 //Number of boxes
 #define numDiv 3 //Number of division on board
 

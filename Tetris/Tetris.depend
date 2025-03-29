@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1743249198 source:d:\04_work\blog\videotutorial\tetris\main.c
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<time.h>
+	<unistd.h>
+	"gotoxy.h"
+	"Tetris.h"
+	"shapes.h"
+
+1740864089 d:\04_work\blog\videotutorial\tetris\gotoxy.h
+
+1743249891 d:\04_work\blog\videotutorial\tetris\shapes.h
+
+1743213347 d:\04_work\blog\videotutorial\tetris\tetris.h
+
