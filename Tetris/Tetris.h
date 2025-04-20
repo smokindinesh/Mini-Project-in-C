@@ -7,13 +7,9 @@
 #define Z_BLOCK 6
 
 #define NUM_BOX 4
-#define win_x 12
-#define win_y 22
 #define win_half_x 6
 #define win_half_y 11
 
-#define board_x 10
-#define board_y 20
 #define board_half_x 5
 #define board_half_y 10
 #define neg_board_half_x -5
@@ -21,7 +17,7 @@
 #define board_index_i_y 21
 #define board_index_j_x 11
 
-
+//Structure definition of x,y coordinate
 struct Point2D {
     int x;
     int y;
@@ -32,12 +28,16 @@ struct Tetriminos {
     struct Point2D body[4];
 };
 
+//Structure definition of individual Tetris box
+//Added on the Tetris board.
 struct TetrisBox {
     struct Point2D box;
     int flag_T;
 };
 
+//Store four corner of the Tetris board
 struct Point2D window[4];
+//Store 7 shapes (Tetrimino)
 struct Tetriminos tetrimino[7];
 
 //Current Tetris shapes
@@ -60,9 +60,6 @@ struct Point2D unitVec[4] = {{0,1},{0,-1},{1,0},{-1,0}};
 
 //Clockwise rotation vector, 0 = clockwise, 1 = anti-clock wise
 struct Point2D currRotationVec[2] = {{1,-1},{-1,1}};
-
-//Flag and index to identify rotation, 0 = clockwise, 1 = anticlockwise, -1 = no rotation.
-//int rotationFlag = 0;
 
 //Index to indicate direction of unit vector
 int unitVecDir = 1;
@@ -120,7 +117,7 @@ void initShapes(){
     tetrimino[Z_BLOCK].body[1] = (struct Point2D){1,0};
     tetrimino[Z_BLOCK].body[0] = (struct Point2D){0,0};
 
-    //initialize Tetris lines
+    //initialize Tetris board
 
     int start_y = board_half_y;
     int start_x = board_half_x * -1;
@@ -139,10 +136,13 @@ void initShapes(){
 
 }
 
+//Update translate vector
 void updTranslateVec(){
+
     currTranslateVec.x = currTranslateVec.x + unitVec[unitVecDir].x;
     currTranslateVec.y = currTranslateVec.y + unitVec[unitVecDir].y;
 }
+//Revert translate vector
 void revertTranslateVec(){
     if(unitVecDir==1){
         currTranslateVec.x = currTranslateVec.x + unitVec[0].x;
@@ -156,12 +156,14 @@ void revertTranslateVec(){
     }
 
 }
+//Reset translate vector
 void resetTranslateVec(){
     currTranslateVec.x = 0;
-    currTranslateVec.y = 13;
+    currTranslateVec.y = 12;
 }
-
-void setCurrentNextTetrimino (int rand_c, int rand_n){
+//Set current and next tetrimino which is required at
+//beginning of the game
+void setCurrentNextTetrimino(int rand_c, int rand_n){
 
     for(int i=0;i<NUM_BOX;i++){
         current_T.body[i].x = tetrimino[rand_c].body[i].x;
@@ -174,6 +176,8 @@ void setCurrentNextTetrimino (int rand_c, int rand_n){
     }
 }
 
+//set current tetrimino by next tetrimino
+//and get new random next tetrimino
 void getNextTetrimino(int rand_n){
 
     for(int i=0;i<NUM_BOX;i++){
@@ -202,11 +206,12 @@ int checkCollisionWithBoxes(struct Point2D r){
 }
 
 int checkOutOfBoard(int x){
-    if( abs(x) > board_half_x){
+    if( x > board_half_x || x < neg_board_half_x){
         return 1;
     }
     return 0;
 }
+
 //Return 1 if it reachs bottom of the board or collide with boxes,
 //else return 0
 int translateTetrimino(int rand_c, int rotationFlag){
@@ -216,24 +221,29 @@ int translateTetrimino(int rand_c, int rotationFlag){
     int stopY = 0;
     struct Tetriminos current_T_TEMP;
     struct Tetriminos rotate_T_TEMP;
+    int flag;
 
-    //Rotate and check collision: if there is collision then do not rotate
+    //1) Rotate and Translate
+    //   1.1) check collision: if yes, then do not rotate
+    //   1.2) Check OutOfBox: if yes, then do not rotate
+    //                   else rotate.
     if((rotationFlag == 0 || rotationFlag == 1) && rand_c != O_BLOCK){
 
         int x, y;
 
-        for(int i=0;i<4;i++){
+        for(int i=0;i<NUM_BOX;i++){
             x = tetrimino[rand_c].body[i].y * currRotationVec[rotationFlag].x;
             y = tetrimino[rand_c].body[i].x * currRotationVec[rotationFlag].y;
 
             rotate_T_TEMP.body[i].x = x + currTranslateVec.x;
             rotate_T_TEMP.body[i].y = y + currTranslateVec.y;
 
+            //flag = checkOutOfBoard(rotate_T_TEMP.body[i].x);
             if(checkOutOfBoard(rotate_T_TEMP.body[i].x)){
                 outOfBoard = 1;
             }
 
-            if(checkCollisionWithBoxes(rotate_T_TEMP.body[i])){
+            if(checkCollisionWithBoxes(rotate_T_TEMP.body[i])==1){
                 collision = 1;
             }
         }
@@ -242,7 +252,7 @@ int translateTetrimino(int rand_c, int rotationFlag){
         //and do not collide with Tetris boxes.
         if(outOfBoard == 0 && collision == 0){
 
-            for(int i=0;i<4;i++){
+            for(int i=0;i<NUM_BOX;i++){
                 x = tetrimino[rand_c].body[i].y * currRotationVec[rotationFlag].x;
                 y = tetrimino[rand_c].body[i].x * currRotationVec[rotationFlag].y;
 
@@ -255,7 +265,7 @@ int translateTetrimino(int rand_c, int rotationFlag){
         collision = 0;
     }
 
-    //After rotation translate Tetrimino
+    //2) Translate Tetrimino
     for(int i=0;i<NUM_BOX;i++){
         current_T_TEMP.body[i].x = tetrimino[rand_c].body[i].x + currTranslateVec.x;
         current_T_TEMP.body[i].y = tetrimino[rand_c].body[i].y + currTranslateVec.y;
@@ -263,50 +273,70 @@ int translateTetrimino(int rand_c, int rotationFlag){
         if(checkOutOfBoard(current_T_TEMP.body[i].x)){
             outOfBoard = 1;
         }
-
-        if(checkCollisionWithBoxes(current_T_TEMP.body[i])){
-            collision = 1;
-            if(unitVecDir == 1)
-                stopY = 2;
-            else
-                stopY = 1;
-        } else if (current_T_TEMP.body[i].y == neg_board_half_y){
-            stopY = 3;
+    }
+    //3) Check OutOfBox: if yes, then reset direction to downward (-ne y-axis)
+    //   and translate again
+    if (outOfBoard==1){
+        revertTranslateVec();
+        unitVecDir = 1;
+        updTranslateVec();
+        for(int i=0;i<NUM_BOX;i++){
+            current_T_TEMP.body[i].x = tetrimino[rand_c].body[i].x + currTranslateVec.x;
+            current_T_TEMP.body[i].y = tetrimino[rand_c].body[i].y + currTranslateVec.y;
         }
     }
 
+    //4) Check collision with boxes vertically or horizontally
     for(int i=0;i<NUM_BOX;i++){
+        if(checkCollisionWithBoxes(current_T_TEMP.body[i])){
+            collision = 1;
+            if(unitVecDir == 1)
+                stopY = 1; //Collided vertically
+            else
+                stopY = 2; //Collided horizontally from side
+        }
+    }
 
-        if(collision == 0){
-            if( outOfBoard == 1 ){
-                current_T.body[i].y = current_T_TEMP.body[i].y;
-            } else {
-                current_T.body[i].x = current_T_TEMP.body[i].x;
-                current_T.body[i].y = current_T_TEMP.body[i].y;
+    // 5) If collided horizontally then Tetrimino moving left or right
+    //     so, revert translate vector and move it downward (-ne y-axis)
+    //     again, check collision
+    if(collision == 1 && stopY == 2){
+
+        revertTranslateVec();
+        unitVecDir = 1;
+        updTranslateVec();
+        collision = 0;
+        stopY = 0;
+        for(int i=0;i<NUM_BOX;i++){
+            current_T_TEMP.body[i].x = tetrimino[rand_c].body[i].x + currTranslateVec.x;
+            current_T_TEMP.body[i].y = tetrimino[rand_c].body[i].y + currTranslateVec.y;
+
+            if(checkCollisionWithBoxes(current_T_TEMP.body[i])){
+                collision = 1;
+                stopY = 1;
             }
-        } else if(collision == 1){
-            for(int i=0;i<NUM_BOX;i++){
-                if(current_T_TEMP.body[i].y == board_half_y){
-                    stopY = 4;
-                }
-            }
+        }
+    }
+
+    // 6) Check Tetrimino reached the bottom
+    //    Check Game over: If tetrimino collided vertically, but any box is outside the window
+    for(int i=0;i<NUM_BOX;i++){
+        if(current_T_TEMP.body[i].y == neg_board_half_y){
+            stopY = 2; //Reached the bottom
+        } else if(current_T_TEMP.body[i].y == board_half_y && stopY == 1){
+            stopY = 3; //Unable to enter board. Game over
+        }
+    }
+
+    // If there is no collision, finally translate the Tetrimino
+    if(collision == 0){
+        for(int i=0;i<NUM_BOX;i++){
+            current_T.body[i].x = tetrimino[rand_c].body[i].x + currTranslateVec.x;
+            current_T.body[i].y = tetrimino[rand_c].body[i].y + currTranslateVec.y;
         }
     }
 
   return stopY;
-}
-
-void rotateTetrimino(int rand_c,struct Point2D r){
-    int x, y;
-
-    for(int i=0;i<4;i++){
-        x = tetrimino[rand_c].body[i].y * r.x;
-        y = tetrimino[rand_c].body[i].x * r.y;
-
-        tetrimino[rand_c].body[i].x = x;
-        tetrimino[rand_c].body[i].y = y;
-    }
-
 }
 
 void setTetrisBoard(){
@@ -368,7 +398,7 @@ void drawWindow(){
 
 void drawTetrimino(struct Tetriminos block){
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<NUM_BOX;i++){
         int x = block.body[i].x ;
         int y = block.body[i].y;
         if(y<=10){
@@ -380,7 +410,7 @@ void drawTetrimino(struct Tetriminos block){
 
 void drawNextTetrimino(struct Tetriminos block){
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<NUM_BOX;i++){
         int x = block.body[i].x ;
         int y = block.body[i].y;
         if(y<=10){
@@ -392,7 +422,7 @@ void drawNextTetrimino(struct Tetriminos block){
 
 void removeTetrimino(struct Tetriminos block){
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<NUM_BOX;i++){
         int x = block.body[i].x;
         int y = block.body[i].y;
         if(y<=10){
@@ -404,7 +434,7 @@ void removeTetrimino(struct Tetriminos block){
 
 void removeNextTetrimino(struct Tetriminos block){
 
-    for(int i=0;i<4;i++){
+    for(int i=0;i<NUM_BOX;i++){
         int x = block.body[i].x ;
         int y = block.body[i].y;
         if(y<=10){
@@ -436,7 +466,7 @@ void reDrawBoxes(int fromAt){
     }
 }
 
-void checkRowAndRedrawBoard(){
+void checkRowAndReDrawBoard(){
 
     int product = 0;
 

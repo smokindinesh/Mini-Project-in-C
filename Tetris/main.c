@@ -19,8 +19,6 @@
 #define HIGH 125
 
 
-
-
 void hidecursor()
 {
    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -36,7 +34,6 @@ void delay(unsigned int msec){
     //while (goal > clock());
     usleep(msec*1000);
 }
-
 
 //Index for current tetrimino
 int rand_c;
@@ -61,8 +58,6 @@ int rotate = -1;
 void startGamePlay();
 int gameStart();
 
-int test_x = 10;
-int test_y = 12;
 
 int main()
 {
@@ -109,90 +104,85 @@ void startGamePlay(){
 }
 
 int gameStart(){
-
     int gameStatus = 0;
     int keyInput = -1;
     int endOfMove = 0;
-
     drawNextTetrimino(next_T);
 
-    while(!kbhit()){
+    while(1){
 
-        gotoxy(12, 10);
-        printf("Row: %d Score: %d",score,score*10);
+        gameStatus = 0;
+        keyInput = -1;
+        endOfMove = 0;
 
-        if(keyHitFlag==0){
+        while(!kbhit()){
+
+            gotoxy(12, 10);
+            printf("Row: %d Score: %d",score,score*10);
+            gotoxy(8, 3);
+            printf("Next Tetrimino");
+
+            //Update translation vector as per Tetrimino direction
+            updTranslateVec();
+
+            //rotateTetrimino(rand_c,r_clk);
+            endOfMove = translateTetrimino(rand_c,rotate);
+            drawTetrimino(current_T);
+
+            //keyHitFlag=0;
             unitVecDir = 1;
+            rotate = -1;
+
+            if(endOfMove == 0){
+                if(score < 10)
+                    delay(LOW);
+                else if (score >= 10 && score < 25 )
+                    delay(MEDIUM);
+                else
+                    delay(HIGH);
+
+                removeTetrimino(current_T);
+            } else if(endOfMove == 1 || endOfMove == 2){
+                setTetrisBoard();
+                removeNextTetrimino(next_T);
+                rand_c = rand_n;
+                rand_n = rand() % 7;
+                getNextTetrimino(rand_n);
+                resetTranslateVec();
+                drawNextTetrimino(next_T);
+                checkRowAndReDrawBoard();
+            } else if(endOfMove == 3){
+                //removeNextTetrimino(next_T);
+                return endOfMove;
+            }
         }
 
-        //Update translation vector as per Tetrimino direction
-        updTranslateVec();
+        keyInput = getch();
 
-        //rotateTetrimino(rand_c,r_clk);
-        endOfMove = translateTetrimino(rand_c,rotate);
-        drawTetrimino(current_T);
+        if(keyInput==TOP){
+            //Rotate Clock wise
+            //rotateTetrimino(rand_c,currRotationVec[0]);
+            rotate=0;
 
+        } else if(keyInput==DOWN){
+            //Rotate anti-clock wise
+            //rotateTetrimino(rand_c,currRotationVec[1]);
+            rotate=1;
 
-        keyHitFlag=0;
-        rotate = -1;
+        } else if(keyInput==LEFT){
+            //Translate toward negative x-axis
+            unitVecDir = 3;
+            //keyHitFlag=1;
 
-        if(endOfMove==0){
+        } else if(keyInput==RIGHT){
+            //Translate toward positive x-axis
+            unitVecDir = 2;
+            //keyHitFlag=1;
 
-            if(score < 10)
-                delay(LOW);
-            else if (score >= 10 && score < 25 )
-                delay(MEDIUM);
-            else
-                delay(HIGH);
-
-            removeTetrimino(current_T);
-        } else if(endOfMove==1){
-            revertTranslateVec();
-            removeTetrimino(current_T);
-        } else if(endOfMove==2 || endOfMove==3){
-            setTetrisBoard();
-            removeNextTetrimino(next_T);
-            rand_c = rand_n;
-            rand_n = rand() % 7;
-            getNextTetrimino(rand_n);
-            resetTranslateVec();
-            drawNextTetrimino(next_T);
-            checkRowAndRedrawBoard();
-        }else if(endOfMove==4){
-            removeNextTetrimino(next_T);
-            return endOfMove;
+        } else if(keyInput==ESC){
+            exit(0);
         }
     }
-
-    keyInput = getch();
-
-    if(keyInput==TOP){
-        //Rotate Clock wise
-        //rotateTetrimino(rand_c,currRotationVec[0]);
-        rotate=0;
-
-    } else if(keyInput==DOWN){
-        //Rotate anti-clock wise
-        //rotateTetrimino(rand_c,currRotationVec[1]);
-        rotate=1;
-
-    } else if(keyInput==LEFT){
-        //Translate toward negative x-axis
-        unitVecDir = 3;
-        keyHitFlag=1;
-
-    } else if(keyInput==RIGHT){
-        //Translate toward positive x-axis
-        unitVecDir = 2;
-        keyHitFlag=1;
-
-    } else if(keyInput==ESC){
-        exit(0);
-    }
-
-    gameStart();
 
     return gameStatus;
 }
-
-

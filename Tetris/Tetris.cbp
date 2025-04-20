@@ -13,6 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-Wunused-variable" />
+					<Add option="-Wunused-function" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -36,7 +38,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="shapes.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

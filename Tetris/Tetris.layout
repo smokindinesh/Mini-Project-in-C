@@ -2,27 +2,28 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="gotoxy.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="186" topLine="0" />
+			<Cursor1 position="144" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Tetris.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2044" topLine="9" />
+			<Cursor1 position="1732" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="341" />
-			<Collapse line="368" />
-			<Collapse line="380" />
-			<Collapse line="392" />
-			<Collapse line="404" />
-			<Collapse line="416" />
+			<Collapse line="369" />
+			<Collapse line="381" />
+			<Collapse line="393" />
+			<Collapse line="405" />
+			<Collapse line="417" />
+			<Collapse line="425" />
+			<Collapse line="439" />
 		</Folding>
 	</File>
-	<File name="shapes.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="782" topLine="0" />
+			<Cursor1 position="121" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
